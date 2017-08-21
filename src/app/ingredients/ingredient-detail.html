@@ -19,11 +19,25 @@
           <label for="image_url">Image URL</label>
           <input type="text" name="image_url" class="form-control" [(ngModel)]="ingredient.imageUrl" />
         </div>
+        <div class="form-group">
+          <label for="measurement_type">Measurement Type</label>
+          <select name="measurement_type" class="form-control" [(ngModel)]="ingredient.measurementType">
+            <option *ngFor="let type of MeasurementType | keys" [ngValue]="type.key">{{ type.value }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="density_multiplier">
+            Density Multiplier
+            <small *ngIf="ingredient.measurementType == MeasurementType.Weight">(from milligrams to milliliters)</small>
+            <small *ngIf="ingredient.measurementType == MeasurementType.Volume">(from milliliters to milligrams)</small>
+          </label>
+          <input type="number" name="density_multiplier" class="form-control" [(ngModel)]="ingredient.densityMultiplier" />
+        </div>
         <button type="submit" class="btn btn-primary">Save Ingredient</button>
-        </form>
+      </form>
     </div>
   </div>
   <div class="col-12 col-sm-5">
-    <nutrition-facts [data]="ingredient.nutritionFacts"></nutrition-facts>
+    <nutrition-facts [ingredient]="ingredient" [enableEditing]="true"></nutrition-facts>
   </div>
 </div>

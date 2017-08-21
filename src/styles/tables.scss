@@ -1,0 +1,58 @@
+.table-container header {
+  background-color: $gray-50;
+  padding: 1rem 2rem;
+}
+
+.nav.filter-bar {
+  display: flex;
+  
+  .filter-bar-search {
+    flex: 8 0 0;
+  }
+
+  .filter-bar-filters {
+    flex: 0 0 0;
+    min-width: 14rem;
+
+    select {
+      margin-top: -0.85rem;
+    }
+  }
+}
+
+.filter-bar-filters {
+  padding: 1rem 1rem 0;
+}
+
+.table {
+  margin-bottom: 0;
+
+  th {
+    border-top: none;
+    padding: 0.625rem 0.75rem 0.625rem;
+    background-color: $gray-100;
+
+    a {
+      color: $black;
+    }
+
+    .material-icons {
+      position: absolute;
+      margin-bottom: -0.125rem;
+      margin-left: 0.125rem;
+    }
+  }
+
+  th:first-child, td:first-child {
+    padding-left: 3rem;
+  }
+
+  th:last-child, td:last-child {
+    padding-right: 3rem;
+  }
+
+  th, td {
+    border-left: none;
+    border-right: none;
+  }
+}

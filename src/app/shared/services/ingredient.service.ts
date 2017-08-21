@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Ingredient } from '../models/ingredient';
+import { NutritionFactList } from '../models/nutrition-fact-list';
 import { LocalStorageService } from './local-storage.service';
 import { Observable } from 'rxjs/Rx';
 import * as _ from 'lodash';
@@ -52,7 +53,10 @@ export class IngredientService {
   }
 
   private enumerate(): Ingredient[] {
-    return this._localStorageService.get<Ingredient[]>('ingredients') || [];
+    return _.map(this._localStorageService.get<Ingredient[]>('ingredients') || [], (ingredient: Ingredient) => {
+      ingredient.nutritionFacts = new NutritionFactList(ingredient.nutritionFacts);
+      return ingredient;
+    });
   }
 
   private persist(ingredients: Ingredient[]): void {

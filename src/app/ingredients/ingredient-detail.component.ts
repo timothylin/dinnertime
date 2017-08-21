@@ -2,6 +2,8 @@ import { PageComponentBase } from '../shared/page-component-base';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Ingredient } from '../shared/models/ingredient';
+import { MeasurementType } from '../shared/models/measurement-type.enum';
+import { AlertService } from '../shared/services/alert.service';
 import { IngredientService } from '../shared/services/ingredient.service';
 
 @Component({
@@ -12,6 +14,7 @@ export class IngredientDetailComponent extends PageComponentBase implements OnIn
 
   constructor(
     private _route: ActivatedRoute,
+    private _alertService: AlertService,
     private _ingredientService: IngredientService) {
       super();
   }
@@ -19,42 +22,27 @@ export class IngredientDetailComponent extends PageComponentBase implements OnIn
   public ingredient: Ingredient;
   public categories: string[];
 
+  // All use of enum in interpolated templates
+  public MeasurementType: any = MeasurementType;
+
   public ngOnInit(): void {
+    this.categories = this._ingredientService.getCategories();
     this._route.params.subscribe(params => {
         this.initFormData(+params['ingredientId']);
     });
-
-    this.categories = this._ingredientService.getCategories();
   }
 
   public initFormData(ingredientId: number): void {
-    console.log(ingredientId);
     this._ingredientService.get(ingredientId)
       .subscribe((data: Ingredient) => {
         this.ingredient = data;
+        console.log(data);
       });
   }
 
   public updateIngredient(): void {
-    this._ingredientService.update(this.ingredient);
+    this._ingredientService.update(this.ingredient).subscribe((data) => {
+      this._alertService.toastSuccess('Ingredient Saved', this.ingredient.name + ' nutrition data and metadata saved successfully.');
+    });
   }
-
-  // public selectedIngredient: any = {
-  //   name: 'Broccoli',
-  //   certifiedNutritionFacts: true,
-  //   nutritionFacts: new NutritionFactList({
-  //     calories: 10,
-  //     totalFat: 0,
-  //     saturatedFat: 0,
-  //     transFat: 0,
-  //     polyunsaturatedFat: 0,
-  //     monounsaturatedFat: 0,
-  //     totalCarbohydrate: 100,
-  //     sugar: 0,
-  //     fiber: 100,
-  //     protein: 0,
-  //     cholesterol: 0,
-  //     sodium: 0
-  //   })
-  // };
 }

@@ -1,0 +1,8 @@
+.card {
+  box-shadow: 0 0.25rem 1rem $shadow;
+  background-color: $white;
+
+  .card-body {
+    padding: 2rem;
+  }
+}

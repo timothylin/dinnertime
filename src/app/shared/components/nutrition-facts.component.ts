@@ -1,7 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { INutritionData } from '../models/nutrition-data.interface';
-import { NutritionFactList } from '../models/nutrition-fact-list';
+import { Ingredient } from '../models/ingredient';
 import { LocalStorageService } from '../services/local-storage.service';
+import { ConversionService } from '../services/conversion.service';
+import { Unit } from '../models/unit';
+import { MeasurementType } from '../models/measurement-type.enum';
 import * as _ from 'lodash';
 
 @Component({
@@ -11,42 +14,36 @@ import * as _ from 'lodash';
 
 export class NutritionFactsComponent {
 
-  constructor(private _localStorageService: LocalStorageService) {
+  constructor(
+    private _localStorageService: LocalStorageService,
+    private _conversionService: ConversionService) {
+
     this.standardDailyRecommended = this._localStorageService.get<INutritionData>('macro-goal:standard');
     this.userDailyRecommended = this._localStorageService.get<INutritionData>('macro-goal:user');
     this.recommendationType = this._localStorageService.get<string>('macro-goal:pref') || 'standard';
   }
 
   @Input()
-  public data: NutritionFactList;
+  public ingredient: Ingredient;
 
   @Input()
   public enableEditing: boolean;
-
-  public servingSize: number = 100;
-  public servingSizeUnit: any = 'g';
-  public servingSizeUnitMultiplier: number = 1;
 
   public standardDailyRecommended: INutritionData;
   public userDailyRecommended: INutritionData;
   public recommendationType: string;
 
-  public setMultiplier(): void {
-    switch (this.servingSizeUnit) {
-      case 'mg':
-        this.servingSizeUnitMultiplier = 1;
-        break;
-      case 'g':
-        this.servingSizeUnitMultiplier = 1000;
-        break;
-      case 'oz':
-        this.servingSizeUnitMultiplier = 28349.5;
-        break;
-    }
-  }
+  public measurementUnits: Unit[] = this._conversionService.getMeasurementUnits();
+
+  public servingSize: number = 100;
+  public servingSizeUnit: string = 'g';
+
+  // Allow use of enum in interpolated templates
+  public MeasurementType: any = MeasurementType;
 
   public getServingData(key: string): number {
-    return (this.data[key] / 100) * this.servingSizeUnitMultiplier * this.servingSize;
+    return this._conversionService.getServingData(
+      key, this.servingSize, this._conversionService.getMeasurementUnit(this.servingSizeUnit), this.ingredient);
   }
 
   public getServingPercent(key: string): string {

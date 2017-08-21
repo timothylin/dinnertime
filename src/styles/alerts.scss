@@ -1,0 +1,57 @@
+$toast-background-color: $dark-popover-background;
+$toast-button-text-color: rgba(255, 255, 255, 0.6);
+
+.alert {
+  border-radius: 0;
+  border: none;
+  padding: .65rem 1rem;
+}
+
+.alert.animated {
+  z-index: 20000;
+  animation-duration: 0.5s;
+  background: $toast-background-color;
+  border: none;
+  border-radius: 0;
+  border-top: solid 0.45rem $brand-info;
+  padding: 1rem 1rem 1rem 1.5rem;
+  width: 22rem;
+  box-shadow: 0 0.5rem 1rem 0 $shadow-darker;
+  max-width: 90%;
+
+  p {
+    color: $gray-150;
+    line-height: 1.25em;
+    font-size: 0.9375em;
+    margin-bottom: 0.5rem;
+  }
+
+  button {
+    color: $toast-button-text-color;
+    background: transparent;
+    border: none;
+  }
+
+  strong {
+    font-size: 1rem;
+    display: block;
+    color: $white;
+    padding-bottom: 0.5rem;
+  }
+}
+
+.alert-info.animated {
+  border-top-color: $blue-700;
+}
+
+.alert-warning.animated {
+  border-top-color: $brand-warning;
+}
+
+.alert-danger.animated {
+  border-top-color: $brand-danger;
+}
+
+.alert-success.animated {
+  border-top-color: $brand-success;
+}

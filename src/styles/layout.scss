@@ -1,0 +1,16 @@
+main {
+  margin-top: 6rem;
+}
+
+.navbar-main {
+  background: $green-400;
+  box-shadow: 0 0 1rem $shadow-darkest;
+
+  a {
+    color: $white !important;
+  }
+}
+
+.bg-dim {
+  background-color: $gray-100;
+}

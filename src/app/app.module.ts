@@ -27,7 +27,10 @@ import { DataTableComponent } from './shared/components/data-table.component';
 import { FilterBarComponent } from './shared/components/filter-bar.component';
 
 import { UnitPipe } from './shared/pipes/unit.pipe';
+import { KeysPipe } from './shared/pipes/keys.pipe';
 
+import { AlertService } from './shared/services/alert.service';
+import { ConversionService } from './shared/services/conversion.service';
 import { DataService } from './shared/services/data.service';
 import { LocalStorageService } from './shared/services/local-storage.service';
 import { IngredientService } from './shared/services/ingredient.service';
@@ -67,7 +70,8 @@ const ROUTES: Routes = [
     NutritionFactsComponent,
     DataTableComponent,
     FilterBarComponent,
-    UnitPipe
+    UnitPipe,
+    KeysPipe
   ],
   imports: [
     HttpModule,
@@ -81,6 +85,8 @@ const ROUTES: Routes = [
     ENV_PROVIDERS,
     APP_PROVIDERS,
     AppPreloader,
+    AlertService,
+    ConversionService,
     DataService,
     LocalStorageService,
     IngredientService
