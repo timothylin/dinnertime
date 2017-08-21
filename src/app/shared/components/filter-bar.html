@@ -1,0 +1,22 @@
+<div class="nav filter-bar">
+  <div class="filter-bar-search">
+    <div class="input-group" *ngIf="config.allowTextFiltering">
+      <input type="search" class="form-control" [(ngModel)]="dataService.filterText" [placeholder]="config.textFilteringPlaceholder" />
+      <div class="input-group-addon" id="basic-addon1"><i class="material-icons">search</i></div>
+    </div>
+  </div>
+  <div class="filter-bar-filters" *ngIf="config.filters.length > 0">
+    <select class="form-control" *ngFor="let f of config.dropdownFilters" [(ngModel)]="f.value" (ngModelChange)="setFilterValue(f)">
+      <option *ngFor="let option of f.options" [ngValue]="option.value">{{ option.label }}</option>
+    </select>
+  </div>
+</div>
+<div class="alert alert-info" *ngIf="isFiltered">
+  <span *ngIf="filteredTotal === 0">
+    There are no results matching the filters you've selected.
+  </span>
+  <span *ngIf="filteredTotal > 0">
+    Showing {{ filteredTotal }} of {{ total }} total results.
+  </span>
+  <a href="javascript:void(0);" (click)="clearAllFilters()">Clear All Filters</a>
+</div>

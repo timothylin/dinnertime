@@ -1,0 +1,134 @@
+<div class="card">
+    <div class="card-body">
+      <div class="row no-gutters pb-2">
+        <div class="col-10">
+          <h3 class="card-title">Nutrition Facts</h3>
+        </div>
+        <div class="col-2 text-right">
+          <i class="material-icons text-success">verified_user</i>
+        </div>
+      </div>
+      <strong>Serving Size</strong>
+      <div class="row no-gutters pt-2">
+        <div class="col-6">
+          <input type="number" class="form-control" [(ngModel)]="servingSize" (ngModelChange)="calculateServingData()" />
+        </div>
+        <div class="col-6 pl-1">
+          <select class="form-control" [(ngModel)]="servingSizeUnit" (ngModelChange)="setMultiplier()">
+            <option value="mg">milligrams (mg)</option>
+            <option value="g">grams (g)</option>
+            <option value="oz">ounces (oz)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item divider header">
+        <strong class="text-calories-label">Calories</strong> <strong class="text-calories-value">{{ getServingData('calories') }}</strong>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-8">
+            <strong>Total Fat</strong> {{ getServingData('totalFat') | unit : 'g' }}
+          </div>
+          <div class="col-4 text-right">{{ getServingPercent('totalFat') }}</div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-8">
+            <span class="ml-3">Saturated Fat</span> {{ getServingData('saturatedFat') | unit : 'g' }}
+          </div>
+          <div class="col-4 text-right">{{ getServingPercent('saturatedFat') }}</div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-8">
+            <span class="ml-3">Trans Fat</span> {{ getServingData('transFat') | unit : 'g' }}
+          </div>
+          <div class="col-4 text-right">{{ getServingPercent('transFat') }}</div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-8">
+            <span class="ml-3">Polyunsaturated Fat</span> {{ getServingData('polyunsaturatedFat') | unit : 'g' }}
+          </div>
+          <div class="col-4 text-right">{{ getServingPercent('polyunsaturatedFat') }}</div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-8">
+            <span class="ml-3">Monounsaturated Fat</span> {{ getServingData('monounsaturatedFat') | unit : 'g' }}
+          </div>
+          <div class="col-4 text-right">{{ getServingPercent('monounsaturatedFat') }}</div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-8">
+            <strong>Total Carbohydrate</strong> {{ getServingData('totalCarbohydrate') | unit : 'g' }}
+          </div>
+          <div class="col-4 text-right">{{ getServingPercent('totalCarbohydrate') }}</div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-8">
+            <span class="ml-3">Sugar</span> {{ getServingData('sugar') | unit : 'g' }}
+          </div>
+          <div class="col-4 text-right">{{ getServingPercent('sugar') }}</div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-8">
+            <span class="ml-3">Dietary Fiber</span> {{ getServingData('fiber') | unit : 'g' }}
+          </div>
+          <div class="col-4 text-right">{{ getServingPercent('fiber') }}</div>
+        </div>
+      </li>
+      <li class="list-group-item bg-dim">
+        <div class="row">
+          <div class="col-8">
+            <strong class="ml-3">Net Carbs</strong> {{ getServingData('netCarbs') | unit : 'g' }}
+          </div>
+          <div class="col-4 text-right">{{ getServingPercent('netCarbs') }}</div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-8">
+            <strong>Protein</strong> {{ getServingData('protein') | unit : 'g' }}
+          </div>
+          <div class="col-4 text-right">{{ getServingPercent('protein') }}</div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-8">
+            <strong>Cholesterol</strong> {{ getServingData('cholesterol') | unit : 'mg' }}
+          </div>
+          <div class="col-4 text-right">{{ getServingPercent('cholesterol') }}</div>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-8">
+            <strong>Sodium</strong> {{ getServingData('sodium') | unit : 'mg' }}
+          </div>
+          <div class="col-4 text-right">{{ getServingPercent('sodium') }}</div>
+        </div>
+      </li>
+    </ul>
+    <div class="card-body bg-dim">
+      Show DV % as percentages of <select class="form-control mt-2"
+        [(ngModel)]="recommendationType"
+        (ngModelChange)="setGoalPreference()">
+        <option value="standard">FDA Standard 2000 Calorie Diet</option>
+        <option value="user">User Customized Nutrition Goals</option>
+      </select>
+    </div>
+  </div>

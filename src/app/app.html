@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand navbar-dark navbar-main fixed-top">
+  <a class="navbar-brand" [routerLink]="'/'"><i class="material-icons">restaurant</i></a>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="'/'">Dashboard</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="'/recipes'">Recipes</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="'/ingredients'">Ingredients</a>
+    </li>
+  </ul>
+</nav>
+
+<main>
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</main>
