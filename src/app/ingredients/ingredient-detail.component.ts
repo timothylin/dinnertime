@@ -43,8 +43,10 @@ export class IngredientDetailComponent extends PageComponentBase implements OnIn
   }
 
   public updateIngredient(): void {
-    this._ingredientService.update(this.ingredient).subscribe((data) => {
-      this._alertService.toastSuccess('Ingredient Saved', this.ingredient.name + ' nutrition data and metadata saved successfully.');
+    this._ingredientService.update(this.ingredient).subscribe(() => {
+      this._ingredientService.updateNutrition(this.ingredient.id, this.nutrition).subscribe(() => {
+        this._alertService.toastSuccess('Ingredient Saved', this.ingredient.name + ' nutrition data and metadata saved successfully.');
+      });
     });
   }
 }

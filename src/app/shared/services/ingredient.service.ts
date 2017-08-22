@@ -35,6 +35,10 @@ export class IngredientService {
     return this._apiService.get(`ingredients/${ ingredientId }/nutrition`);
   }
 
+  public updateNutrition(ingredientId: number, nutrition: NutritionFactList): Observable<NutritionFactList> {
+    return this._apiService.put(`ingredients/${ ingredientId }/nutrition`, nutrition);
+  }
+
   public getCategories(): string[] {
     return [
       'Milk & Cream',
