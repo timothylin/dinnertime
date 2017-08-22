@@ -3,7 +3,9 @@ import { NutritionFactList } from './nutrition-fact-list';
 export class Ingredient {
   constructor(name: string, category?: string) {
     this.name = name;
-    this.category = category;
+    this.category = category || '';
+    this.imageUrl = '';
+    this.measurementType = 0;
   }
   public id: number;
   public name: string;

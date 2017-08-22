@@ -12,9 +12,9 @@
         <td><a [routerLink]="'/ingredients/' + x.id">{{ x.name }}</a></td>
         <td>{{ x.category }}</td>
         <td>{{ x.calories }}</td>
-        <td>{{ x.totalCarbohydrate }}</td>
-        <td>{{ x.totalFat }}</td>
-        <td>{{ x.protein }}</td>
+        <td>{{ x.totalCarbohydrate | unit : 'g' }}</td>
+        <td>{{ x.totalFat | unit : 'g' }}</td>
+        <td>{{ x.protein | unit: 'g' }}</td>
       </tr>
     </tbody>
   </data-table>

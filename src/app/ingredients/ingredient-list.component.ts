@@ -8,6 +8,8 @@ import { ColumnConfig } from '../shared/models/column-config';
 import { FilterConfig } from '../shared/models/filter-config';
 import { FilterOption } from '../shared/models/filter-option';
 import { Ingredient } from '../shared/models/ingredient';
+import { AlertService } from '../shared/services/alert.service';
+import { Router } from '@angular/router';
 import * as _ from 'lodash';
 
 @Component({
@@ -19,7 +21,11 @@ export class IngredientListComponent extends PageComponentBase {
   public dataTableConfig: DataTableConfig = new DataTableConfig();
   public filterBarConfig: FilterBarConfig = new FilterBarConfig();
 
-  constructor(private _ingredientService: IngredientService) {
+  constructor(
+    private _ingredientService: IngredientService,
+    private _alertService: AlertService,
+    private _router: Router) {
+
     super();
     this.dataService = new DataService();
     this.dataService.sortField = 'name';
@@ -50,7 +56,11 @@ export class IngredientListComponent extends PageComponentBase {
 
   public addNewIngredient(): void {
     const ingredient = new Ingredient('New Ingredient');
-    this._ingredientService.create(ingredient);
-    this.initTableData();
+    this._ingredientService.create(ingredient)
+      .subscribe((data) => {
+        this._alertService.toastSuccess('Ingredient Added', 'New ingredient successfully created.');
+        this._router.navigateByUrl(`/ingredients/${ data.id }`);
+        this.initTableData();
+      });
   }
 }
