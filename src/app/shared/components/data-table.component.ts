@@ -26,6 +26,10 @@ export class DataTableComponent implements OnInit, OnChanges {
   }
 
   private processData() {
+    if (!this.config) {
+      return;
+    }
+
     // the filtered data
     let data = this.dataService.filterData(this.config.sourceData);
 

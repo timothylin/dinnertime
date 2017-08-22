@@ -2,6 +2,12 @@ main {
   margin-top: 6rem;
 }
 
+.runway {
+  width: 90%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
 .navbar-main {
   background: $green-400;
   box-shadow: 0 0 1rem $shadow-darkest;

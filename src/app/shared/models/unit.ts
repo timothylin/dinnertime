@@ -1,7 +1,5 @@
-import { MeasurementType } from './measurement-type.enum';
-
 export class Unit {
-  constructor(label: string, value: string, measurementType: MeasurementType) {
+  constructor(label: string, value: string, measurementType: number) {
     this.label = label;
     this.value = value;
     this.measurementType = measurementType;
@@ -9,5 +7,5 @@ export class Unit {
 
   public label: string;
   public value: string;
-  public measurementType: MeasurementType;
+  public measurementType: number;
 }

@@ -30,6 +30,7 @@ import { UnitPipe } from './shared/pipes/unit.pipe';
 import { KeysPipe } from './shared/pipes/keys.pipe';
 
 import { AlertService } from './shared/services/alert.service';
+import { ApiService } from './shared/services/api.service';
 import { ConversionService } from './shared/services/conversion.service';
 import { DataService } from './shared/services/data.service';
 import { LocalStorageService } from './shared/services/local-storage.service';
@@ -86,6 +87,7 @@ const ROUTES: Routes = [
     APP_PROVIDERS,
     AppPreloader,
     AlertService,
+    ApiService,
     ConversionService,
     DataService,
     LocalStorageService,
@@ -101,7 +103,6 @@ export class AppModule {
     if (!store || !store.state) {
       return;
     }
-    console.log('HMR store', JSON.stringify(store, null, 2));
     // set state
     this.appState._state = store.state;
     // set input values

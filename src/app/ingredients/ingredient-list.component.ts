@@ -16,15 +16,14 @@ import * as _ from 'lodash';
 
 export class IngredientListComponent extends PageComponentBase {
   public dataService: DataService;
-  public dataTableConfig: DataTableConfig;
-  public filterBarConfig: FilterBarConfig;
+  public dataTableConfig: DataTableConfig = new DataTableConfig();
+  public filterBarConfig: FilterBarConfig = new FilterBarConfig();
 
   constructor(private _ingredientService: IngredientService) {
     super();
     this.dataService = new DataService();
     this.dataService.sortField = 'name';
 
-    this.filterBarConfig = new FilterBarConfig();
     this.filterBarConfig.textFilteringPlaceholder = 'Name, tags, etc.';
     this.filterBarConfig.filters.push(new FilterConfig('Category', 'category',
       _.map(this._ingredientService.getCategories(), (category) => {
@@ -41,9 +40,10 @@ export class IngredientListComponent extends PageComponentBase {
         this.dataTableConfig.columns = [
           new ColumnConfig('name', 'Name'),
           new ColumnConfig('category', 'Category'),
-          new ColumnConfig('nutritionFacts.calories', 'Calories'),
-          new ColumnConfig('nutritionFacts.totalCarbohydrate', 'Carbs'),
-          new ColumnConfig('nutritionFacts.protein', 'Protein', false)
+          new ColumnConfig('calories', 'Calories'),
+          new ColumnConfig('totalCarbohydrate', 'Carbs'),
+          new ColumnConfig('totalFat', 'Fat'),
+          new ColumnConfig('protein', 'Protein')
         ];
       });
   }

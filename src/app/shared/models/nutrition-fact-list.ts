@@ -19,10 +19,10 @@ export class NutritionFactList implements INutritionData {
   public transFat: number = 0;
   public polyunsaturatedFat: number = 0;
   public monounsaturatedFat: number = 0;
-  
+
   public totalCarbohydrate: number = 0;
-  public sugar: number = 0
-  public fiber: number = 0
+  public sugar: number = 0;
+  public fiber: number = 0;
 
   public get netCarbs(): number {
     return this.totalCarbohydrate - this.fiber;

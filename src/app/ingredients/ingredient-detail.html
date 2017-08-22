@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-12 col-sm-7">
+  <div class="col-12 col-sm-7" *ngIf="ingredient">
     <div class="card">
       <div class="card-body ingredient-header" [ngStyle]="{ 'background-image': 'url(' + ingredient.imageUrl + ')' }">
         <h1>{{ ingredient.name }}</h1>
@@ -22,14 +22,15 @@
         <div class="form-group">
           <label for="measurement_type">Measurement Type</label>
           <select name="measurement_type" class="form-control" [(ngModel)]="ingredient.measurementType">
-            <option *ngFor="let type of MeasurementType | keys" [ngValue]="type.key">{{ type.value }}</option>
+            <option [ngValue]="0">Weight</option>
+            <option [ngValue]="1">Volume</option>
           </select>
         </div>
         <div class="form-group">
           <label for="density_multiplier">
             Density Multiplier
-            <small *ngIf="ingredient.measurementType == MeasurementType.Weight">(from milligrams to milliliters)</small>
-            <small *ngIf="ingredient.measurementType == MeasurementType.Volume">(from milliliters to milligrams)</small>
+            <small *ngIf="ingredient.measurementType == 0">(from milligrams to milliliters)</small>
+            <small *ngIf="ingredient.measurementType == 1">(from milliliters to milligrams)</small>
           </label>
           <input type="number" name="density_multiplier" class="form-control" [(ngModel)]="ingredient.densityMultiplier" />
         </div>
@@ -37,7 +38,7 @@
       </form>
     </div>
   </div>
-  <div class="col-12 col-sm-5">
-    <nutrition-facts [ingredient]="ingredient" [enableEditing]="true"></nutrition-facts>
+  <div class="col-12 col-sm-5" *ngIf="ingredient && nutrition">
+    <nutrition-facts [ingredient]="ingredient" [nutrition]="nutrition" [enableEditing]="true"></nutrition-facts>
   </div>
 </div>

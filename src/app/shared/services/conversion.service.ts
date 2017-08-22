@@ -1,27 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Unit } from '../models/unit';
-import { MeasurementType } from '../models/measurement-type.enum';
-import { Ingredient } from '../models/ingredient';
+import { NutritionFactList } from '../models/nutrition-fact-list';
 import * as _ from 'lodash';
 
 @Injectable()
 export class ConversionService {
-  
+
   private options: Unit[] = [
-    new Unit('milligrams', 'mg', MeasurementType.Weight),
-    new Unit('grams', 'g', MeasurementType.Weight), // ggg g-unit
-    new Unit('kilograms', 'kg', MeasurementType.Weight),
-    new Unit('ounces', 'oz', MeasurementType.Weight),
-    new Unit('pounds', 'lb', MeasurementType.Weight),
-    new Unit('milliliters', 'mL', MeasurementType.Volume),
-    new Unit('liters', 'L', MeasurementType.Volume),
-    new Unit('fluid ounces', 'fl oz', MeasurementType.Volume),
-    new Unit('teaspoons', 'tsp', MeasurementType.Volume),
-    new Unit('tablespoons', 'tbsp', MeasurementType.Volume),
-    new Unit('cups', 'c', MeasurementType.Volume),
-    new Unit('pints', 'pt', MeasurementType.Volume),
-    new Unit('quarts', 'qt', MeasurementType.Volume),
-    new Unit('gallons', 'gal', MeasurementType.Volume),
+    new Unit('milligrams', 'mg', 0),
+    new Unit('grams', 'g', 0), // ggg g-unit
+    new Unit('kilograms', 'kg', 0),
+    new Unit('ounces', 'oz', 0),
+    new Unit('pounds', 'lb', 0),
+    new Unit('milliliters', 'mL', 1),
+    new Unit('liters', 'L', 1),
+    new Unit('fluid ounces', 'fl oz', 1),
+    new Unit('teaspoons', 'tsp', 1),
+    new Unit('tablespoons', 'tbsp', 1),
+    new Unit('cups', 'c', 1),
+    new Unit('pints', 'pt', 1),
+    new Unit('quarts', 'qt', 1),
+    new Unit('gallons', 'gal', 1),
   ];
 
   public getMeasurementUnits(): Unit[] {
@@ -29,7 +28,7 @@ export class ConversionService {
   }
 
   public getMeasurementUnit(value: string) {
-    return _.find(this.options, { value: value });
+    return _.find(this.options, { value });
   }
 
   /**
@@ -79,17 +78,19 @@ export class ConversionService {
     key: string,
     servingSize: number,
     servingSizeUnit: Unit,
-    ingredient: Ingredient): number {
+    measurementType: number,
+    densityMultiplier: number,
+    nutrition: NutritionFactList): number {
 
-    let baseServingSize: number = ingredient.nutritionFacts.servingSize;
+    let baseServingSize: number = nutrition.servingSize;
 
-    if (servingSizeUnit.measurementType != ingredient.measurementType) {
+    if (servingSizeUnit.measurementType !== measurementType) {
       // Need to do density conversion.
-      baseServingSize *= ingredient.densityMultiplier;
+      baseServingSize *= densityMultiplier;
     }
 
-    let conversionMultiplier = this.getDefaultMultiplier(servingSizeUnit);
+    const conversionMultiplier = this.getDefaultMultiplier(servingSizeUnit);
 
-    return (ingredient.nutritionFacts[key] / baseServingSize) * conversionMultiplier * servingSize;
+    return (nutrition[key] / baseServingSize) * conversionMultiplier * servingSize;
   }
 }

@@ -4,7 +4,7 @@ import { Ingredient } from '../models/ingredient';
 import { LocalStorageService } from '../services/local-storage.service';
 import { ConversionService } from '../services/conversion.service';
 import { Unit } from '../models/unit';
-import { MeasurementType } from '../models/measurement-type.enum';
+import { NutritionFactList } from '../models/nutrition-fact-list';
 import * as _ from 'lodash';
 
 @Component({
@@ -27,6 +27,9 @@ export class NutritionFactsComponent {
   public ingredient: Ingredient;
 
   @Input()
+  public nutrition: NutritionFactList;
+
+  @Input()
   public enableEditing: boolean;
 
   public standardDailyRecommended: INutritionData;
@@ -38,12 +41,14 @@ export class NutritionFactsComponent {
   public servingSize: number = 100;
   public servingSizeUnit: string = 'g';
 
-  // Allow use of enum in interpolated templates
-  public MeasurementType: any = MeasurementType;
-
   public getServingData(key: string): number {
     return this._conversionService.getServingData(
-      key, this.servingSize, this._conversionService.getMeasurementUnit(this.servingSizeUnit), this.ingredient);
+      key,
+      this.servingSize,
+      this._conversionService.getMeasurementUnit(this.servingSizeUnit),
+      this.ingredient.measurementType,
+      this.ingredient.densityMultiplier,
+      this.nutrition);
   }
 
   public getServingPercent(key: string): string {
@@ -62,7 +67,7 @@ export class NutritionFactsComponent {
     const result = ((this.getServingData(key) / comparison[key]) * 100);
     if (result % 1 === 0) {
       return result + '%';
-    } 
+    }
     else {
       return result.toFixed(1) + '%';
     }

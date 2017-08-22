@@ -1,17 +1,18 @@
 import { NutritionFactList } from './nutrition-fact-list';
-import { MeasurementType } from './measurement-type.enum';
 
 export class Ingredient {
   constructor(name: string, category?: string) {
     this.name = name;
     this.category = category;
-    this.nutritionFacts = new NutritionFactList();
   }
   public id: number;
   public name: string;
   public category: string;
   public imageUrl: string;
-  public measurementType: MeasurementType;
+  public measurementType: number;
   public densityMultiplier?: number;
-  public nutritionFacts: NutritionFactList;
+  public calories?: number;
+  public totalCarbohydrate?: number;
+  public totalFat?: number;
+  public protein: number;
 }

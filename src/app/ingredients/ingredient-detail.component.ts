@@ -2,9 +2,9 @@ import { PageComponentBase } from '../shared/page-component-base';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Ingredient } from '../shared/models/ingredient';
-import { MeasurementType } from '../shared/models/measurement-type.enum';
 import { AlertService } from '../shared/services/alert.service';
 import { IngredientService } from '../shared/services/ingredient.service';
+import { NutritionFactList } from '../shared/models/nutrition-fact-list';
 
 @Component({
   templateUrl: './ingredient-detail.html'
@@ -20,14 +20,12 @@ export class IngredientDetailComponent extends PageComponentBase implements OnIn
   }
 
   public ingredient: Ingredient;
+  public nutrition: NutritionFactList;
   public categories: string[];
-
-  // All use of enum in interpolated templates
-  public MeasurementType: any = MeasurementType;
 
   public ngOnInit(): void {
     this.categories = this._ingredientService.getCategories();
-    this._route.params.subscribe(params => {
+    this._route.params.subscribe((params) => {
         this.initFormData(+params['ingredientId']);
     });
   }
@@ -36,7 +34,11 @@ export class IngredientDetailComponent extends PageComponentBase implements OnIn
     this._ingredientService.get(ingredientId)
       .subscribe((data: Ingredient) => {
         this.ingredient = data;
-        console.log(data);
+      });
+
+    this._ingredientService.getNutrition(ingredientId)
+      .subscribe((data: NutritionFactList) => {
+        this.nutrition = data;
       });
   }
 

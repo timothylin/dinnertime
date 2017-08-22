@@ -18,7 +18,6 @@ export class FilterBarComponent implements OnInit {
   @Input() public config: FilterBarConfig;
   @Input() public dataService: DataService;
 
-
   public ngOnInit() {
     if (this.config.dropdownFilters) {
       this.config.dropdownFilters.forEach((x) => {

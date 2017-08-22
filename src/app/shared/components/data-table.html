@@ -1,12 +1,8 @@
 <div class="table-container">
   <ng-content select="header"></ng-content>
-  <table [attr.id]='tableId' class="table">
+  <table class="table">
     <thead>
       <tr>
-        <th *ngIf="selectionConfig?.rendersOnLeft">
-          <input [attr.id]='uniqueId' [(ngModel)]="selectingAll" type="checkbox" (change)="toggleSelectAll()">
-          <label [attr.for]='uniqueId'></label>
-        </th>
         <th *ngFor="let col of config.columns">
           <a href="javascript:void(0);" (click)="toggleSort(col)" *ngIf="col.sortable !== false">
               {{ getColumnLabel(col) }}
@@ -14,10 +10,6 @@
               <i class="material-icons" *ngIf="dataService.sortField == col.field && !dataService.sortAsc">keyboard_arrow_down</i>
             </a>
           <a href="javascript:void(0);" *ngIf="col.sortable === false">{{ getColumnLabel(col) }}</a>
-        </th>
-        <th *ngIf="selectionConfig?.rendersOnRight">
-          <input [attr.id]='uniqueId' [checked]="selectingAll" type="checkbox" (change)="toggleSelectAll()">
-          <label [attr.for]='uniqueId'></label>
         </th>
       </tr>
     </thead>

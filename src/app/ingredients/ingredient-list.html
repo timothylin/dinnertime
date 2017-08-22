@@ -11,9 +11,10 @@
       <tr *ngFor="let x of dataTableConfig.processedData">
         <td><a [routerLink]="'/ingredients/' + x.id">{{ x.name }}</a></td>
         <td>{{ x.category }}</td>
-        <td>{{ x.nutritionFacts.calories }}</td>
-        <td>{{ x.nutritionFacts.totalCarbohydrate }}</td>
-        <td>{{ x.nutritionFacts.protein }}</td>
+        <td>{{ x.calories }}</td>
+        <td>{{ x.totalCarbohydrate }}</td>
+        <td>{{ x.totalFat }}</td>
+        <td>{{ x.protein }}</td>
       </tr>
     </tbody>
   </data-table>

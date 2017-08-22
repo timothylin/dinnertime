@@ -1,8 +1,8 @@
 import { ColumnConfig } from './column-config';
 
 export class DataTableConfig {
-  constructor(data: any[]) {
-    this.sourceData = data;
+  constructor(data?: any[]) {
+    this.sourceData = data || [];
     this.processedData = [];
   }
 
