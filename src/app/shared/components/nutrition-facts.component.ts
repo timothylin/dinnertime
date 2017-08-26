@@ -27,9 +27,6 @@ export class NutritionFactsComponent {
   public ingredient: Ingredient;
 
   @Input()
-  public nutrition: NutritionFactList;
-
-  @Input()
   public enableEditing: boolean;
 
   public standardDailyRecommended: INutritionData;
@@ -46,9 +43,7 @@ export class NutritionFactsComponent {
       key,
       this.servingSize,
       this._conversionService.getMeasurementUnit(this.servingSizeUnit),
-      this.ingredient.measurementType,
-      this.ingredient.densityMultiplier,
-      this.nutrition);
+      this.ingredient);
   }
 
   public getServingPercent(key: string): string {

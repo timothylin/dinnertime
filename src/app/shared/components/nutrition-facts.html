@@ -27,7 +27,7 @@
       <li class="list-group-item divider header">
         <strong class="text-calories-label">Calories</strong>
         <strong class="text-calories-value" *ngIf="!enableEditing">{{ getServingData('calories') }}</strong>
-        <strong class="text-calories-value" *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="nutrition.calories" /></strong>
+        <strong class="text-calories-value" *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="ingredient.calories" /></strong>
       </li>
       <li class="list-group-item nutrition-data">
         <div class="row">
@@ -37,7 +37,7 @@
           </div>
           <div class="col-4 text-right">
             <span *ngIf="!enableEditing">{{ getServingPercent('totalFat') }}</span>
-            <span *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="nutrition.totalFat" /></span>
+            <span *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="ingredient.totalFat" /></span>
           </div>
         </div>
       </li>
@@ -49,7 +49,7 @@
           </div>
           <div class="col-4 text-right">
             <span *ngIf="!enableEditing">{{ getServingPercent('saturatedFat') }}</span>
-            <span *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="nutrition.saturatedFat" /></span>
+            <span *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="ingredient.saturatedFat" /></span>
           </div>
         </div>
       </li>
@@ -61,7 +61,7 @@
           </div>
           <div class="col-4 text-right">
             <span *ngIf="!enableEditing">{{ getServingPercent('transFat') }}</span>
-            <span *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="nutrition.transFat" /></span>
+            <span *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="ingredient.transFat" /></span>
           </div>
         </div>
       </li>
@@ -73,7 +73,7 @@
           </div>
           <div class="col-4 text-right">
             <span *ngIf="!enableEditing">{{ getServingPercent('polyunsaturatedFat') }}</span>
-            <span *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="nutrition.polyunsaturatedFat" /></span>
+            <span *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="ingredient.polyunsaturatedFat" /></span>
           </div>
         </div>
       </li>
@@ -85,7 +85,7 @@
           </div>
           <div class="col-4 text-right">
             <span *ngIf="!enableEditing">{{ getServingPercent('monounsaturatedFat') }}</span>
-            <span *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="nutrition.monounsaturatedFat" /></span>
+            <span *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="ingredient.monounsaturatedFat" /></span>
           </div>
         </div>
       </li>
@@ -97,7 +97,7 @@
           </div>
           <div class="col-4 text-right">
             <span *ngIf="!enableEditing">{{ getServingPercent('totalCarbohydrate') }}</span>
-            <span *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="nutrition.totalCarbohydrate" /></span>
+            <span *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="ingredient.totalCarbohydrate" /></span>
           </div>
         </div>
       </li>
@@ -109,7 +109,7 @@
           </div>
           <div class="col-4 text-right">
             <span *ngIf="!enableEditing">{{ getServingPercent('sugar') }}</span>
-            <span *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="nutrition.sugar" /></span>
+            <span *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="ingredient.sugar" /></span>
           </div>
         </div>
       </li>
@@ -121,7 +121,7 @@
           </div>
           <div class="col-4 text-right">
             <span *ngIf="!enableEditing">{{ getServingPercent('fiber') }}</span>
-            <span *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="nutrition.fiber" /></span>
+            <span *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="ingredient.fiber" /></span>
           </div>
         </div>
       </li>
@@ -144,7 +144,7 @@
           </div>
           <div class="col-4 text-right">
             <span *ngIf="!enableEditing">{{ getServingPercent('protein') }}</span>
-            <span *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="nutrition.protein" /></span>
+            <span *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="ingredient.protein" /></span>
           </div>
         </div>
       </li>
@@ -156,7 +156,7 @@
           </div>
           <div class="col-4 text-right">
             <span *ngIf="!enableEditing">{{ getServingPercent('cholesterol') }}</span>
-            <span *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="nutrition.cholesterol" /></span>
+            <span *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="ingredient.cholesterol" /></span>
           </div>
         </div>
       </li>
@@ -168,7 +168,7 @@
           </div>
           <div class="col-4 text-right">
             <span *ngIf="!enableEditing">{{ getServingPercent('sodium') }}</span>
-            <span *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="nutrition.saturatedFat" /></span>
+            <span *ngIf="enableEditing"><input type="number" class="form-control macro-input" [(ngModel)]="ingredient.saturatedFat" /></span>
           </div>
         </div>
       </li>

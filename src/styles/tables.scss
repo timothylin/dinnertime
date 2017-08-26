@@ -18,6 +18,13 @@
       margin-top: -0.85rem;
     }
   }
+
+  & + .alert {
+    margin-left: -2rem;
+    margin-right: -2rem;
+    margin-top: 1rem;
+    padding-left: 2.75rem;
+  }
 }
 
 .filter-bar-filters {

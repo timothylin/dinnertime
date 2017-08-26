@@ -73,7 +73,7 @@ module.exports = function (options) {
         use: 'raw-loader',
         exclude: [helpers.root('src/index.html')]
       }, {
-        test: /\.(jpg|svg|png|gif)$/,
+        test: /\.(jpg|svg|png|gif|webm)$/,
         use: 'file-loader'
       }],
     },

@@ -1,6 +1,6 @@
 import { PageComponentBase } from '../shared/page-component-base';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Ingredient } from '../shared/models/ingredient';
 import { AlertService } from '../shared/services/alert.service';
 import { IngredientService } from '../shared/services/ingredient.service';
@@ -14,13 +14,13 @@ export class IngredientDetailComponent extends PageComponentBase implements OnIn
 
   constructor(
     private _route: ActivatedRoute,
+    private _router: Router,
     private _alertService: AlertService,
     private _ingredientService: IngredientService) {
       super();
   }
 
   public ingredient: Ingredient;
-  public nutrition: NutritionFactList;
   public categories: string[];
 
   public ngOnInit(): void {
@@ -38,18 +38,20 @@ export class IngredientDetailComponent extends PageComponentBase implements OnIn
       .subscribe((data: Ingredient) => {
         this.ingredient = data;
       });
-
-    this._ingredientService.getNutrition(ingredientId)
-      .subscribe((data: NutritionFactList) => {
-        this.nutrition = data;
-      });
   }
 
   public updateIngredient(): void {
     this._ingredientService.update(this.ingredient).subscribe(() => {
-      this._ingredientService.updateNutrition(this.ingredient.id, this.nutrition).subscribe(() => {
-        this._alertService.toastSuccess('Ingredient Saved', this.ingredient.name + ' nutrition data and metadata saved successfully.');
-      });
+      this._alertService.toastSuccess('Ingredient Saved', this.ingredient.name + ' nutrition data and metadata saved successfully.');
     });
+  }
+
+  public deleteIngredient(): void {
+    if (window.confirm('Are you sure you want to delete this ingredient?')) {
+      this._ingredientService.delete(this.ingredient.id).subscribe(() => {
+        this._alertService.toastSuccess('Ingredient Deleted', this.ingredient.name + ' was successfully deleted from the database.');
+        this._router.navigateByUrl('/ingredients');
+      });
+    }
   }
 }

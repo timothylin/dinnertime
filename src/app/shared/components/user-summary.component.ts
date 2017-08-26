@@ -63,11 +63,13 @@ export class UserSummaryComponent implements AfterContentInit {
   }
 
   public logout(): void {
-    FB.logout((response) => {
-      this.isLoggedIn = false;
-      this._localStorageService.remove('user.authToken');
-      this._localStorageService.remove('user.name');
-      this._localStorageService.remove('user.id');
-   });
+    if (window.confirm('Are you sure you want to logout?')) {
+      FB.logout((response) => {
+        this.isLoggedIn = false;
+        this._localStorageService.remove('user.authToken');
+        this._localStorageService.remove('user.name');
+        this._localStorageService.remove('user.id');
+     });
+    }
   }
 }

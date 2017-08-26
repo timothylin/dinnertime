@@ -35,10 +35,11 @@
           <input type="number" name="density_multiplier" class="form-control" [(ngModel)]="ingredient.densityMultiplier" />
         </div>
         <button type="submit" class="btn btn-primary">Save Ingredient</button>
+        <button type="button" class="btn btn-danger float-right" (click)="deleteIngredient()">Delete Ingredient</button>
       </form>
     </div>
   </div>
-  <div class="col-12 col-sm-5" *ngIf="ingredient && nutrition">
-    <nutrition-facts [ingredient]="ingredient" [nutrition]="nutrition" [enableEditing]="true"></nutrition-facts>
+  <div class="col-12 col-sm-5" *ngIf="ingredient">
+    <nutrition-facts [ingredient]="ingredient" [enableEditing]="true"></nutrition-facts>
   </div>
 </div>

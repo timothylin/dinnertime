@@ -30,6 +30,7 @@ export class IngredientListComponent extends PageComponentBase {
     this.dataService = new DataService();
 
     this.filterBarConfig.textFilteringPlaceholder = 'Name, tags, etc.';
+    this.dataService.sortField = 'category';
 
     this._ingredientService.getCategories().subscribe((categories) => {
       this.filterBarConfig.filters.push(new FilterConfig('Category', 'category',
@@ -44,7 +45,7 @@ export class IngredientListComponent extends PageComponentBase {
   public initTableData(): void {
     this._ingredientService.getAll()
       .subscribe((data) => {
-        this.dataTableConfig = new DataTableConfig(_.orderBy(data, ['category', 'name']));
+        this.dataTableConfig = new DataTableConfig(data);
         this.dataTableConfig.columns = [
           new ColumnConfig('name', 'Name'),
           new ColumnConfig('category', 'Category'),

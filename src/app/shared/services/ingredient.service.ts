@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Ingredient } from '../models/ingredient';
-import { NutritionFactList } from '../models/nutrition-fact-list';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs/Rx';
 import * as _ from 'lodash';
@@ -29,14 +28,6 @@ export class IngredientService {
 
   public delete(ingredientId: number): Observable<any> {
     return this._apiService.delete<any>(`ingredients/${ ingredientId }`);
-  }
-
-  public getNutrition(ingredientId: number): Observable<NutritionFactList> {
-    return this._apiService.get(`ingredients/${ ingredientId }/nutrition`);
-  }
-
-  public updateNutrition(ingredientId: number, nutrition: NutritionFactList): Observable<NutritionFactList> {
-    return this._apiService.put(`ingredients/${ ingredientId }/nutrition`, nutrition);
   }
 
   public getCategories(): Observable<string[]> {

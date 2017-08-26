@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Unit } from '../models/unit';
-import { NutritionFactList } from '../models/nutrition-fact-list';
+import { Ingredient } from '../models/ingredient';
 import * as _ from 'lodash';
 
 @Injectable()
@@ -78,19 +78,17 @@ export class ConversionService {
     key: string,
     servingSize: number,
     servingSizeUnit: Unit,
-    measurementType: number,
-    densityMultiplier: number,
-    nutrition: NutritionFactList): number {
+    ingredient: Ingredient): number {
 
-    let baseServingSize: number = nutrition.servingSize;
+    let baseServingSize: number = 100000;
 
-    if (servingSizeUnit.measurementType !== measurementType) {
+    if (servingSizeUnit.measurementType !== ingredient.measurementType) {
       // Need to do density conversion.
-      baseServingSize *= densityMultiplier;
+      baseServingSize *= ingredient.densityMultiplier;
     }
 
     const conversionMultiplier = this.getDefaultMultiplier(servingSizeUnit);
 
-    return (nutrition[key] / baseServingSize) * conversionMultiplier * servingSize;
+    return (ingredient[key] / baseServingSize) * conversionMultiplier * servingSize;
   }
 }
