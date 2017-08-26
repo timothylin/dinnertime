@@ -1,6 +1,7 @@
 <div class="table-container">
   <ng-content select="header"></ng-content>
-  <table class="table">
+  <loading *ngIf="config.isLoading"></loading>
+  <table class="table" *ngIf="!config.isLoading">
     <thead>
       <tr>
         <th *ngFor="let col of config.columns">

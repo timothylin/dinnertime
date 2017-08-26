@@ -25,6 +25,8 @@ import { RecipeDetailComponent } from './recipes/recipe-detail.component';
 import { NutritionFactsComponent } from './shared/components/nutrition-facts.component';
 import { DataTableComponent } from './shared/components/data-table.component';
 import { FilterBarComponent } from './shared/components/filter-bar.component';
+import { LoadingComponent } from './shared/components/loading.component';
+import { UserSummaryComponent } from './shared/components/user-summary.component';
 
 import { UnitPipe } from './shared/pipes/unit.pipe';
 import { KeysPipe } from './shared/pipes/keys.pipe';
@@ -71,6 +73,8 @@ const ROUTES: Routes = [
     NutritionFactsComponent,
     DataTableComponent,
     FilterBarComponent,
+    LoadingComponent,
+    UserSummaryComponent,
     UnitPipe,
     KeysPipe
   ],

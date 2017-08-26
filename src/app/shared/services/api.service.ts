@@ -75,11 +75,9 @@ export class ApiService {
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
 
-    if (url.indexOf('auth') === -1) {
-      const token = this._localStorageService.get('auth-token');
-      if (token !== null) {
-        headers.append('Authorization', 'DT-OAUTH ' + token);
-      }
+    const token = this._localStorageService.get('user.accessToken');
+    if (token !== null) {
+      headers.append('Authorization', 'FB-GRAPH ' + token);
     }
 
     return headers;

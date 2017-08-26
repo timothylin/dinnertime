@@ -12,12 +12,11 @@ export class PageComponentBase implements AfterViewInit {
   public title: string;
 
   public ngAfterViewInit() {
-    const titleSuffix = 'Recipe Catalog';
     if (this.title) {
-      this._title.setTitle(this.title + ' | ' + titleSuffix);
+      this._title.setTitle(this.title + ' | DinnerTime');
     }
     else {
-      this._title.setTitle(titleSuffix);
+      this._title.setTitle('DinnerTime - A Nutrition-Based Meal Planning Tool');
     }
   }
 }

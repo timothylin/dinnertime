@@ -1,0 +1,3 @@
+<a href="javascript:void(0);" *ngIf="!isLoggedIn" (click)="login()">Login with Facebook</a>
+<a href="javascript:void(0);" *ngIf="isLoggedIn" (click)="logout()">Logout</a>
+<img *ngIf="userPhotoUrl && isLoggedIn" [src]="userPhotoUrl" alt="{{ userName }}" class="user-profile-photo" />

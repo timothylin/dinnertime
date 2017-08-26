@@ -28,13 +28,15 @@ export class IngredientListComponent extends PageComponentBase {
 
     super();
     this.dataService = new DataService();
-    this.dataService.sortField = 'name';
 
     this.filterBarConfig.textFilteringPlaceholder = 'Name, tags, etc.';
-    this.filterBarConfig.filters.push(new FilterConfig('Category', 'category',
-      _.map(this._ingredientService.getCategories(), (category) => {
+
+    this._ingredientService.getCategories().subscribe((categories) => {
+      this.filterBarConfig.filters.push(new FilterConfig('Category', 'category',
+      _.map(categories, (category) => {
         return new FilterOption(category, category);
       })));
+    });
 
     this.initTableData();
   }
@@ -42,7 +44,7 @@ export class IngredientListComponent extends PageComponentBase {
   public initTableData(): void {
     this._ingredientService.getAll()
       .subscribe((data) => {
-        this.dataTableConfig = new DataTableConfig(data);
+        this.dataTableConfig = new DataTableConfig(_.orderBy(data, ['category', 'name']));
         this.dataTableConfig.columns = [
           new ColumnConfig('name', 'Name'),
           new ColumnConfig('category', 'Category'),

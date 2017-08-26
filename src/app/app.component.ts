@@ -1,18 +1,19 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import 'rxjs/add/operator/distinctUntilChanged';
-import { NAV_ITEMS } from './app.nav';
 import * as Pace from 'pace-progress';
 
 import { LocalStorageService } from './shared/services/local-storage.service';
 import { INutritionData } from './shared/models/nutrition-data.interface';
+
+declare var FB: any;
 
 @Component({
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './app.html'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   constructor(
     private _route: ActivatedRoute,
@@ -28,6 +29,9 @@ export class AppComponent {
       }).subscribe((x: any) => {
         // Workaround for https://github.com/angular/angular/issues/6946
         window.scrollTo(0, 0);
+
+        // Record Page View for Analytics
+        FB.AppEvents.logPageView();
       });
 
       this._localStorageService.set('macro-goal:standard', {
@@ -63,5 +67,12 @@ export class AppComponent {
 
   }
 
-  public navItems: any[] = NAV_ITEMS;
+  public ngOnInit(): void {
+    FB.init({
+      appId: '115971672466021',
+      cookie: true,
+      xfbml: false,
+      version: 'v2.8'
+    });
+  }
 }

@@ -20,3 +20,10 @@ main {
 .bg-dim {
   background-color: $gray-100;
 }
+
+.user-profile-photo {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 0.25rem;
+  margin-left: 0.5rem;
+}

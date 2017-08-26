@@ -24,7 +24,10 @@ export class IngredientDetailComponent extends PageComponentBase implements OnIn
   public categories: string[];
 
   public ngOnInit(): void {
-    this.categories = this._ingredientService.getCategories();
+    this._ingredientService.getCategories().subscribe((categories) => {
+      this.categories = categories;
+    });
+
     this._route.params.subscribe((params) => {
         this.initFormData(+params['ingredientId']);
     });

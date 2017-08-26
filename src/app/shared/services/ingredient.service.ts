@@ -39,20 +39,7 @@ export class IngredientService {
     return this._apiService.put(`ingredients/${ ingredientId }/nutrition`, nutrition);
   }
 
-  public getCategories(): string[] {
-    return [
-      'Milk & Cream',
-      'Cheese',
-      'Meats & Poultry',
-      'Seafood',
-      'Tofus',
-      'Rice & Pasta',
-      'Breads',
-      'Fruits',
-      'Vegetables',
-      'Oils',
-      'Seasoning',
-      'Other'
-    ];
+  public getCategories(): Observable<string[]> {
+    return this._apiService.get('ingredients/categories');
   }
 }
