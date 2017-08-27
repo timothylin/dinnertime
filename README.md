@@ -1,2 +1,2 @@
 # dinnertime
-Open source, nutrition-based meal planning app.
+Nutrition-based meal planning app.
