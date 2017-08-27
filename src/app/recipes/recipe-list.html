@@ -1,1 +1,35 @@
-<h1>Recipe List</h1>
+<header class="clearfix">
+  <h1 class="card-title float-left">Recipe List</h1>
+  <button class="btn btn-primary float-right" (click)="addNewRecipe()">New Recipe</button>
+</header>
+
+<div class="filter-bar-container">
+  <filter-bar [(config)]="filterBarConfig" [(dataService)]="dataService"></filter-bar>
+</div>
+
+<loading *ngIf="isLoading"></loading>
+
+<div class="card-list row" *ngIf="!isLoading">
+  <div class="col-12 col-sm-6 col-lg-4 col-max-3" *ngFor="let recipe of recipes">
+    <a [routerLink]="'/recipes/' + recipe.id" class="card recipe-card">
+      <div class="image-container">
+        <img [src]="recipe.imageUrl" alt="{{ recipe.name }}" />
+      </div>
+      <div class="card-body">
+        <h3>{{ recipe.name }}</h3>
+        <dl class="recipe-nutrition-summary">
+          <dt>Carbs</dt>
+          <dd>{{ recipe.totalCarbohydrate | unit : 'g' }}</dd>
+          <dt>Fat</dt>
+          <dd>{{ recipe.totalFat | unit : 'g' }}</dd>
+          <dt>Protein</dt>
+          <dd>{{ recipe.protein | unit : 'g' }}</dd>
+        </dl>
+      </div>
+      <dl class="label-calories">
+        <dd>{{ recipe.calories }}</dd>
+        <dt>Calories</dt>
+      </dl>
+    </a>
+  </div>
+</div>

@@ -37,6 +37,7 @@ export class IngredientListComponent extends PageComponentBase {
       _.map(categories, (category) => {
         return new FilterOption(category, category);
       })));
+      this.filterBarConfig.addDefaultFilterOptions();
     });
 
     this.initTableData();
@@ -63,7 +64,6 @@ export class IngredientListComponent extends PageComponentBase {
       .subscribe((data) => {
         this._alertService.toastSuccess('Ingredient Added', 'New ingredient successfully created.');
         this._router.navigateByUrl(`/ingredients/${ data.id }`);
-        this.initTableData();
       });
   }
 }

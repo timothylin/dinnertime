@@ -1,7 +1,7 @@
 <div class="card">
-  <div class="card-body">
-    <h1 class="card-title">Ingredient List</h1>
-    <button class="btn btn-primary" (click)="addNewIngredient()">New Ingredient</button>
+  <div class="card-body clearfix">
+    <h1 class="card-title float-left">Ingredient List</h1>
+    <button class="btn btn-primary float-right" (click)="addNewIngredient()">New Ingredient</button>
   </div>
   <data-table [(config)]="dataTableConfig" [(dataService)]="dataService">
     <header>

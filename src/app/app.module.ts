@@ -37,6 +37,8 @@ import { ConversionService } from './shared/services/conversion.service';
 import { DataService } from './shared/services/data.service';
 import { LocalStorageService } from './shared/services/local-storage.service';
 import { IngredientService } from './shared/services/ingredient.service';
+import { RecipeService } from './shared/services/recipe.service';
+import { IdentityService } from './shared/services/identity.service';
 
 // NOTE: These are Webpack imports, not TypeScript.
 import '../styles/main.scss';
@@ -95,7 +97,9 @@ const ROUTES: Routes = [
     ConversionService,
     DataService,
     LocalStorageService,
-    IngredientService
+    IngredientService,
+    RecipeService,
+    IdentityService
   ]
 })
 export class AppModule {

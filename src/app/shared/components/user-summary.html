@@ -1,4 +1,4 @@
-<a href="javascript:void(0);" *ngIf="!isLoggedIn" (click)="login()">Login with Facebook</a>
-<a href="javascript:void(0);" *ngIf="isLoggedIn" (click)="logout()">
-  <img *ngIf="userPhotoUrl && isLoggedIn" [src]="userPhotoUrl" alt="{{ userName }}" class="user-profile-photo" />
+<a href="javascript:void(0);" *ngIf="!identityService.isLoggedIn" (click)="login()">Login with Facebook</a>
+<a href="javascript:void(0);" *ngIf="identityService.isLoggedIn" (click)="logout()">
+  <img *ngIf="identityService.userPhotoUrl && identityService.isLoggedIn" [src]="identityService.userPhotoUrl" alt="{{ identityService.userName }}" class="user-profile-photo" />
 </a>

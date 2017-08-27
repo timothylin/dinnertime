@@ -6,3 +6,100 @@
     padding: 2rem;
   }
 }
+
+.card-list {
+  padding-top: 2rem;
+
+  .card {
+    margin-bottom: 1.5rem;
+    height: 25rem;
+  }
+}
+
+.recipe-card {
+  color: $black;
+
+  transition: box-shadow 0.1s ease-in;
+
+  &:hover {
+    box-shadow: 0 0 1.5rem $shadow-darkest;
+  }
+
+  &:hover, &:visited, &:active {
+    color: $black;
+    text-decoration: none;
+  }
+
+  .image-container {
+    width: 100%;
+    height: 17rem;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      min-height: 17rem;
+    }
+  }
+
+  .card-body {
+    padding-right: 9.125rem;
+    padding-bottom: 0.5rem;
+
+    h3 {
+      font-family: $font-family-brand;
+      font-weight: 300;
+      margin-bottom: 1.25rem;
+      margin-top: -0.5rem;
+    }
+  }
+}
+
+.label-calories {
+  border: solid 0.125rem $black;
+  width: 6rem;
+  height: 7rem;
+  border-top-left-radius: 3rem 15%;
+  border-top-right-radius: 3rem 15%;
+  border-bottom-left-radius: 3rem 15%;
+  border-bottom-right-radius: 3rem 15%;
+  position: absolute;
+  background-color: $white;
+  right: 1.5rem;
+  bottom: 1.125rem;
+  
+  dd {
+    font-size: 2.55rem;
+    text-align: center;
+    font-family: $font-family-brand;
+    font-weight: 500;
+    padding: 0;
+    margin: 0.5rem 0 0;
+  }
+
+  dt {
+    font-size: 1.125rem;
+    text-align: center;
+    font-family: $font-family-brand;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 0;
+    margin: -0.5rem 0 0;
+  }
+}
+
+.recipe-nutrition-summary {
+
+  dd, dt {
+    display: inline-block;
+    font-size: 0.875rem;
+  }
+
+  dd {
+    background-color: $gray-100;
+    padding: 0.25rem 0.5rem;
+    min-width: 2rem;
+    text-align: center;
+    margin-right: 0.5rem;
+    border-radius: 0.5rem;
+  }
+}

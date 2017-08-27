@@ -19,16 +19,6 @@ export class FilterBarComponent implements OnInit {
   @Input() public dataService: DataService;
 
   public ngOnInit() {
-    if (this.config.dropdownFilters) {
-      this.config.dropdownFilters.forEach((x) => {
-        if (!_.find(x.options, (o: FilterOption) => {
-          return o.label === 'Any ' + x.name && o.value === undefined;
-        })) {
-          x.options = [new FilterOption('Any ' + x.name, undefined)].concat(x.options);
-        }
-      });
-    }
-
     this.dataService.dataFiltered$.subscribe(
       (event: DataFilteredEvent) => this.onDataFiltered(event));
   }
