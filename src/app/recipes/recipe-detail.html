@@ -1,1 +1,16 @@
-<h1>Recipe Detail</h1>
+<div class="recipe-detail-header" *ngIf="recipe && recipe.imageUrl"
+  [ngStyle]="{ 'background-image': 'url(' + recipe.imageUrl + ')' }">
+</div>
+<div class="recipe-detail-content" *ngIf="recipe">
+  <div class="page-title-header">
+    <h1>{{ recipe.name }} <small>Submitted by {{ recipe.userName }}</small></h1>
+  </div>
+  <div class="row">
+    <div class="col-12 col-sm-6 col-lg-7 col-xl-8 recipe-runway" *ngIf="recipe">
+      <p>Test</p>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-5 col-xl-4 recipe-nutrition" *ngIf="nutritionData">
+      <nutrition-facts [ingredient]="nutritionData" [enableEditing]="false"></nutrition-facts>
+    </div>
+  </div>
+</div>

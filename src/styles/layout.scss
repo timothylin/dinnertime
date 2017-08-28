@@ -106,3 +106,61 @@ main {
     margin-top: 5rem;
   }
 }
+
+.recipe-detail-header {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: -20rem;
+  min-height: 27rem;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.page-title-header {
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  h1 {
+    background-color: $shadow-darkest;
+    color: $white;
+    padding: 1.25rem 2rem;
+    margin-left: -2rem;
+    margin-right: -2rem;
+    margin-bottom: -2rem;
+    margin-top: 7rem;
+
+    small {
+      font-family: $font-family-sans-serif;
+      font-size: 1rem;
+      font-weight: bold;
+      color: $gray-200;
+      margin-left: 1rem;
+    }
+  }
+}
+
+.recipe-detail-content {
+  width: 100%;
+  max-width: 1440px;
+
+  .page-title-header {
+    h1 {
+      position: absolute;
+      top: 14.75rem;
+      left: 0;
+      width: 100%;
+      padding-left: 7rem;
+    }
+  }
+}
+
+.recipe-runway {
+  padding-top: 24rem;
+  padding-left: 2rem;
+}
+
+.recipe-nutrition {
+  padding-top: 10rem;
+}

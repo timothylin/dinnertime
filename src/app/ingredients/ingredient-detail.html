@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-12 col-sm-7" *ngIf="ingredient">
     <div class="card">
-      <div class="card-body ingredient-header" [ngStyle]="{ 'background-image': 'url(' + ingredient.imageUrl + ')' }">
+      <div class="card-body page-title-header" [ngStyle]="{ 'background-image': 'url(' + ingredient.imageUrl + ')' }">
         <h1>{{ ingredient.name }}</h1>
       </div>
       <form class="card-body" (ngSubmit)="updateIngredient()">
