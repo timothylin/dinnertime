@@ -13,7 +13,7 @@ export class ApiService {
     private _http: Http,
     private _localStorageService: LocalStorageService
   ) {
-    this.baseUrl = 'http://localhost:5000/';
+    this.baseUrl = 'http://api.dinnertime.io/';
   }
 
   public get<T>(url: string): Observable<T> {

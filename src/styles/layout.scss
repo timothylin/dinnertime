@@ -164,3 +164,18 @@ main {
 .recipe-nutrition {
   padding-top: 10rem;
 }
+
+.recipe-actions {
+  position: absolute;
+  right: 1rem;
+  top: 18rem;
+
+  a {
+    font-weight: bold;
+    color: $gray-100;
+
+    .material-icons {
+      vertical-align: bottom;
+    }
+  }
+}

@@ -3,10 +3,16 @@
 </div>
 <div class="recipe-detail-content" *ngIf="recipe">
   <div class="page-title-header">
-    <h1>{{ recipe.name }} <small>Submitted by {{ recipe.userName }}</small></h1>
+    <h1>
+      {{ recipe.name }}
+      <small>Submitted by {{ recipe.userName }}</small>
+    </h1>
   </div>
   <div class="row">
     <div class="col-12 col-sm-6 col-lg-7 col-xl-8 recipe-runway" *ngIf="recipe">
+      <div class="recipe-actions">
+        <a href="javascript:void(0);">Edit Recipe <i class="material-icons">create</i></a>
+      </div>
       <p>Test</p>
     </div>
     <div class="col-12 col-sm-6 col-lg-5 col-xl-4 recipe-nutrition" *ngIf="nutritionData">
