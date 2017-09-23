@@ -1,5 +1,5 @@
 <div class="recipe-detail-header" *ngIf="recipe && recipe.imageUrl"
-  [ngStyle]="{ 'background-image': 'url(' + recipe.imageUrl + ')' }">
+     [ngStyle]="{ 'background-image': 'url(' + recipe.imageUrl + ')' }">
 </div>
 <div class="recipe-detail-content" *ngIf="recipe">
   <div class="page-title-header">
@@ -13,7 +13,30 @@
       <div class="recipe-actions">
         <a href="javascript:void(0);">Edit Recipe <i class="material-icons">create</i></a>
       </div>
-      <p>Test</p>
+      <h2>Ingredients</h2>
+
+      <table class="table table-striped">
+        <tr>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Quantity</th>
+        </tr>
+        <tr *ngFor="let ingredient of recipe.ingredients">
+          <td>
+            {{ ingredient.name }}
+          </td>
+          <td>{{ingredient.category}}</td>
+          <td>
+            {{ ingredient.quantity }} {{ingredient.units}}
+          </td>
+        </tr>
+      </table>
+      <br/>
+      <h2>Cooking Instructions</h2>
+      <ol>
+        <li>{{recipe.instructions}}</li>
+      </ol>
+
     </div>
     <div class="col-12 col-sm-6 col-lg-5 col-xl-4 recipe-nutrition" *ngIf="nutritionData">
       <nutrition-facts [ingredient]="nutritionData" [enableEditing]="false"></nutrition-facts>
